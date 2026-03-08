@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Shipment | FedEx</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/styles.css" />
+</head>
+<body data-page="ship">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="FedEx home">
+        <img class="brand-logo-png" src="static/images/fedex-logo.png" alt="FedEx logo png" />
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="ship.html">Ship Now</a>
+        <a href="world-map.html">Live Map</a>
+</nav>
+</div>
+  </header>
+
+  <main>
+    <div class="container flash-wrap" id="flash-container"></div>
+    <section class="section">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">User Shipment Form</p>
+          <h2>Create package shipment</h2>
+          <p>Coordinates are required so the tracking page can render the route map from origin to destination.</p>
+        </div>
+        <form class="panel" id="ship-form">
+          <div class="grid-two">
+            <label>Sender Name<input name="sender_name" required /></label>
+            <label>Sender Email<input name="sender_email" type="email" /></label>
+            <label>Sender Phone<input name="sender_phone" /></label>
+            <label>Origin Label<input name="origin_label" placeholder="New York, USA" required /></label>
+            <label>Origin Latitude<input name="origin_lat" type="number" step="any" required /></label>
+            <label>Origin Longitude<input name="origin_lng" type="number" step="any" required /></label>
+            <label>Receiver Name<input name="receiver_name" required /></label>
+            <label>Receiver Email<input name="receiver_email" type="email" /></label>
+            <label>Receiver Phone<input name="receiver_phone" /></label>
+            <label>Destination Label<input name="destination_label" placeholder="Toronto, Canada" required /></label>
+            <label>Destination Latitude<input name="destination_lat" type="number" step="any" required /></label>
+            <label>Destination Longitude<input name="destination_lng" type="number" step="any" required /></label>
+            <label>Weight (kg)<input name="weight_kg" type="number" min="0.1" step="0.1" required /></label>
+            <label>Service
+              <select name="service_level" required>
+                <option value="same-day">Same Day</option>
+                <option value="express">Express</option>
+                <option value="standard">Standard</option>
+                <option value="international">International</option>
+              </select>
+            </label>
+          </div>
+          <label>Package Description<input name="package_description" required placeholder="Documents, electronics, apparel" /></label>
+          <button class="btn" type="submit">Register Shipment</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p>© 2026 FedEx Logistics</p>
+      <p>Shipping, tracking, and delivery operations</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+

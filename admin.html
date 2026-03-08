@@ -1,0 +1,132 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | FedEx</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/styles.css" />
+</head>
+<body data-page="admin">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="FedEx home">
+        <img class="brand-logo-png" src="static/images/fedex-logo.png" alt="FedEx logo png" />
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="ship.html">Ship Now</a>
+        <a href="world-map.html">Live Map</a>
+</nav>
+      <button class="btn btn-outline" id="admin-logout-btn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container flash-wrap" id="flash-container"></div>
+
+    <section class="section">
+      <div class="container split">
+        <div class="panel">
+          <p class="eyebrow">Operations - Create Shipment</p>
+          <h2>Register package manually</h2>
+          <form id="admin-create-form">
+            <div class="grid-two">
+              <label>Sender Name<input name="sender_name" required /></label>
+              <label>Sender Email<input name="sender_email" type="email" /></label>
+              <label>Sender Phone<input name="sender_phone" /></label>
+              <label>Origin Label<input name="origin_label" required placeholder="Berlin, Germany" /></label>
+              <label>Origin Latitude<input name="origin_lat" type="number" step="any" required /></label>
+              <label>Origin Longitude<input name="origin_lng" type="number" step="any" required /></label>
+              <label>Receiver Name<input name="receiver_name" required /></label>
+              <label>Receiver Email<input name="receiver_email" type="email" /></label>
+              <label>Receiver Phone<input name="receiver_phone" /></label>
+              <label>Destination Label<input name="destination_label" required placeholder="Paris, France" /></label>
+              <label>Destination Latitude<input name="destination_lat" type="number" step="any" required /></label>
+              <label>Destination Longitude<input name="destination_lng" type="number" step="any" required /></label>
+              <label>Weight (kg)<input name="weight_kg" type="number" min="0.1" step="0.1" required /></label>
+              <label>Service
+                <select name="service_level" required>
+                  <option value="same-day">Same Day</option>
+                  <option value="express">Express</option>
+                  <option value="standard">Standard</option>
+                  <option value="international">International</option>
+                </select>
+              </label>
+            </div>
+            <label>Package Description<input name="package_description" required /></label>
+            <button type="submit" class="btn">Create Shipment</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">Operations - Shipment Updates</p>
+          <h2>Manually change package status</h2>
+          <form id="admin-status-form">
+            <label>Tracking ID<input name="tracking_id" required placeholder="FDX-260306-A1B2C3D4" /></label>
+            <label>Status
+              <select name="status" required>
+                <option value="label-created">Label Created</option>
+                <option value="picked-up">Picked Up</option>
+                <option value="in-transit">In Transit</option>
+                <option value="arrived-hub">Arrived at Hub</option>
+                <option value="out-for-delivery">Out for Delivery</option>
+                <option value="delivered">Delivered</option>
+                <option value="exception">Delivery Exception</option>
+              </select>
+            </label>
+            <label>Location<input name="location_label" placeholder="Chicago Facility" /></label>
+            <label>Update Note<input name="note" placeholder="Package scanned into outbound lane" /></label>
+            <button type="submit" class="btn">Apply Update</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Registered Shipments</p>
+          <h2>Latest packages</h2>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tracking ID</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Status</th>
+                <th>Updated</th>
+                <th>Tracking Page</th>
+              </tr>
+            </thead>
+            <tbody id="admin-shipments-body">
+              <tr><td colspan="6">No shipments yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p>© 2026 FedEx Logistics</p>
+      <p>Shipping, tracking, and delivery operations</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+

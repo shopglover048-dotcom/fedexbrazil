@@ -1,0 +1,108 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FedEx | Delivery Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/styles.css" />
+</head>
+<body data-page="home">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="FedEx home">
+        <img class="brand-logo-png" src="static/images/fedex-logo.png" alt="FedEx logo png" />
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="ship.html">Ship Now</a>
+        <a href="world-map.html">Live Map</a>
+</nav>
+</div>
+  </header>
+
+  <main>
+    <div class="container flash-wrap" id="flash-container"></div>
+
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">FedEx delivery network</p>
+        <h1>Ship, track, and manage deliveries in one FedEx-style portal</h1>
+        <p>Create shipments instantly, issue a unique tracking number, and monitor route progress from origin to destination with live status events.</p>
+        <div class="hero-actions">
+          <a href="ship.html" class="btn">Ship Now</a>
+</div>
+        <div class="stats">
+          <article><h3>99.1%</h3><p>On-time SLA</p></article>
+          <article><h3>24/7</h3><p>Support Desk</p></article>
+          <article><h3>Live</h3><p>Realtime updates</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Track Shipment</p>
+          <h2>Open a full tracking page by ID</h2>
+          <p>Enter a tracking ID to see package details, timeline events, and route map.</p>
+        </div>
+        <form class="panel" id="home-track-form">
+          <label>Tracking Number
+            <input name="tracking_id" placeholder="FDX-260306-A12BCD34" required />
+          </label>
+          <button type="submit" class="btn">Track Package</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>End-to-end package lifecycle</h2>
+      </div>
+      <div class="container service-grid">
+        <article class="service-card">
+          <img src="static/images/fedex-online-1.jpg" alt="FedEx operations at Heathrow" />
+          <div>
+            <h3>Create a Shipment</h3>
+            <p>Enter sender and receiver details, then submit for immediate label generation.</p>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="static/images/fedex-online-2.jpg" alt="FedEx truck in service" />
+          <div>
+            <h3>Generate Tracking ID</h3>
+            <p>The browser stores shipment data and creates a unique FedEx-style tracking number.</p>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="static/images/fedex-online-3.jpg" alt="FedEx trucks at facility" />
+          <div>
+            <h3>Delivery Progress Updates</h3>
+            <p>Automated scan events and route checkpoints keep customers informed from pickup to final delivery.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p>© 2026 FedEx Logistics</p>
+      <p>Shipping, tracking, and delivery operations</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+

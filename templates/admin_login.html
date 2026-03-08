@@ -1,0 +1,18 @@
+﻿{% extends "base.html" %}
+{% block title %}{{ t('title.admin_login', 'Admin Login | FedEx') }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <form class="panel" method="post" action="{{ url_for('admin_login_submit_portal') }}">
+      <p class="eyebrow">{{ t('admin_login.eyebrow', 'Admin Access') }}</p>
+      <h2>{{ t('admin_login.title', 'Sign in to operations console') }}</h2>
+      <label>{{ t('form.username', 'Username') }}<input name="username" required /></label>
+      <label>{{ t('form.password', 'Password') }}<input name="password" type="password" required /></label>
+      <button type="submit" class="btn">{{ t('admin_login.submit', 'Login') }}</button>
+      <p class="hint">{{ t('admin_login.hint', 'Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` environment variables before production use.') }}</p>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+

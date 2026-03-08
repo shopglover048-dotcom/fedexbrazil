@@ -1,0 +1,1 @@
+﻿// Offline static app logic now lives in static/offline.js.

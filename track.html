@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Shipment | FedEx</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="static/styles.css" />
+</head>
+<body data-page="track">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="FedEx home">
+        <img class="brand-logo-png" src="static/images/fedex-logo.png" alt="FedEx logo png" />
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="ship.html">Ship Now</a>
+        <a href="world-map.html">Live Map</a>
+</nav>
+</div>
+  </header>
+
+  <main>
+    <div class="container flash-wrap" id="flash-container"></div>
+
+    <section class="section" id="track-found" hidden>
+      <div class="container split">
+        <div class="panel">
+          <p class="eyebrow">Live Tracking</p>
+          <h2 id="tracking-id-title"></h2>
+          <p><strong>Status:</strong> <span id="tracking-status-label"></span></p>
+          <div class="progress"><span id="tracking-progress" style="width: 0%;"></span></div>
+          <p><strong>Route:</strong> <span id="tracking-route"></span></p>
+          <p><strong>Sender:</strong> <span id="tracking-sender"></span></p>
+          <p><strong>Receiver:</strong> <span id="tracking-receiver"></span></p>
+          <p><strong>Weight:</strong> <span id="tracking-weight"></span></p>
+          <p><strong>Service:</strong> <span id="tracking-service"></span></p>
+          <p><strong>Description:</strong> <span id="tracking-description"></span></p>
+          <p><strong>ETA (UTC):</strong> <span id="tracking-eta"></span></p>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">Route Map</p>
+          <h2>From origin to destination</h2>
+          <div id="route-map" class="map"></div>
+          <p id="track-map-line" class="hint"></p>
+          <p class="hint">Map uses internet tiles and requires internet access.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="track-not-found" hidden>
+      <div class="container narrow">
+        <div class="panel">
+          <p class="eyebrow">Tracking</p>
+          <h2 id="missing-id-label">Tracking ID was not found</h2>
+          <p class="muted">Check the tracking number and try again. The ID must come from a package created on this browser.</p>
+          <form id="track-lookup-form" class="track-row">
+            <input name="tracking_id" placeholder="FDX-260306-A1B2C3D4" required />
+            <button class="btn" type="submit">Try Again</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="track-events" hidden>
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Timeline</p>
+          <h2>All tracking events</h2>
+        </div>
+        <div class="panel">
+          <ul class="timeline" id="timeline-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p>© 2026 FedEx Logistics</p>
+      <p>Shipping, tracking, and delivery operations</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+

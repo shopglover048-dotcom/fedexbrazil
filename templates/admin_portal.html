@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+{% block title %}{{ t('title.admin_portal', 'Admin Portal | FedEx') }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container split">
+    <div class="panel portal-hero">
+      <p class="eyebrow">{{ t('admin_portal.secure', 'Secure Access') }}</p>
+      <h2>{{ t('admin_portal.title', 'Dedicated Admin Portal') }}</h2>
+      <p>{{ t('admin_portal.desc', 'This URL is separate from the customer flow. Use it to enter operations and manage shipment progress updates.') }}</p>
+      <a class="btn" href="{{ url_for('portal_admin_login') }}">{{ t('admin_portal.go_login', 'Go to Admin Login') }}</a>
+    </div>
+    <div class="panel">
+      <p class="eyebrow">{{ t('admin_portal.url', 'Portal URL') }}</p>
+      <h2>/portal</h2>
+      <p class="muted">{{ t('admin_portal.connected', 'Connected routes:') }}</p>
+      <ul class="feature-list">
+        <li><code>/portal</code> admin entry page</li>
+        <li><code>/portal/admin-login</code> admin sign-in</li>
+        <li><code>/admin</code> protected operations dashboard</li>
+      </ul>
+      <a class="btn btn-outline" href="{{ url_for('home') }}">{{ t('admin_portal.back', 'Back to Home') }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

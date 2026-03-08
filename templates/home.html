@@ -1,0 +1,70 @@
+﻿{% extends "base.html" %}
+{% block title %}{{ t('title.home', 'FedEx | Delivery Platform') }}{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-media" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <p class="eyebrow">{{ t('home.hero.eyebrow', 'FedEx delivery network') }}</p>
+    <h1>{{ t('home.hero.title', 'Ship, track, and manage deliveries in one FedEx-style portal') }}</h1>
+    <p>{{ t('home.hero.desc', 'Create shipments instantly, issue a unique tracking number, and monitor route progress from origin to destination with live status events.') }}</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('ship_page') }}" class="btn">{{ t('home.hero.ship_btn', 'Ship Now') }}</a>
+      <a href="{{ url_for('world_map') }}" class="btn btn-outline">{{ t('home.hero.map_btn', 'View Live Map') }}</a>
+    </div>
+    <div class="stats">
+      <article><h3>99.1%</h3><p>{{ t('home.stats.ontime', 'On-time SLA') }}</p></article>
+      <article><h3>24/7</h3><p>{{ t('home.stats.support', 'Support Desk') }}</p></article>
+      <article><h3>{{ t('home.stats.live_title', 'Live') }}</h3><p>{{ t('home.stats.live_desc', 'Realtime updates') }}</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">{{ t('home.track.eyebrow', 'Track Shipment') }}</p>
+      <h2>{{ t('home.track.title', 'Open a full tracking page by ID') }}</h2>
+      <p>{{ t('home.track.desc', 'Enter a tracking ID to see package details, timeline events, and route map.') }}</p>
+    </div>
+    <form class="panel" method="post" action="{{ url_for('track_lookup') }}">
+      <label>{{ t('form.tracking_number', 'Tracking Number') }}
+        <input name="tracking_id" placeholder="FDX-260306-A12BCD34" required />
+      </label>
+      <button type="submit" class="btn">{{ t('home.track.button', 'Track Package') }}</button>
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container section-head">
+    <p class="eyebrow">{{ t('home.how.eyebrow', 'How it works') }}</p>
+    <h2>{{ t('home.how.title', 'End-to-end package lifecycle') }}</h2>
+  </div>
+  <div class="container service-grid">
+    <article class="service-card">
+      <img src="{{ url_for('static', filename='images/fedex-online-1.jpg') }}" alt="FedEx operations at Heathrow" />
+      <div>
+        <h3>{{ t('home.card.create.title', 'Create a Shipment') }}</h3>
+        <p>{{ t('home.card.create.desc', 'Enter sender and receiver details, then submit for immediate label generation.') }}</p>
+      </div>
+    </article>
+    <article class="service-card">
+      <img src="{{ url_for('static', filename='images/fedex-online-2.jpg') }}" alt="FedEx truck in service" />
+      <div>
+        <h3>{{ t('home.card.id.title', 'Generate Tracking ID') }}</h3>
+        <p>{{ t('home.card.id.desc', 'The backend records shipment data and creates a unique FedEx-style tracking number.') }}</p>
+      </div>
+    </article>
+    <article class="service-card">
+      <img src="{{ url_for('static', filename='images/fedex-online-3.jpg') }}" alt="FedEx trucks at facility" />
+      <div>
+        <h3>{{ t('home.card.update.title', 'Delivery Progress Updates') }}</h3>
+        <p>{{ t('home.card.update.desc', 'Automated scan events and route checkpoints keep customers informed from pickup to final delivery.') }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+{% endblock %}
+
+
+

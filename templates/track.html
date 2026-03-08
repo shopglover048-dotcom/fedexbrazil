@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}{{ t('title.track', 'Tracking') }} {{ shipment.tracking_id }} | FedEx{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container split">
+    <div class="panel">
+      <p class="eyebrow">{{ t('track.live', 'Live Tracking') }}</p>
+      <h2>{{ shipment.tracking_id }}</h2>
+      <p><strong>{{ t('track.status', 'Status:') }}</strong> {{ status_label }}</p>
+      <div class="progress"><span style="width: {{ progress }}%;"></span></div>
+      <p><strong>{{ t('track.route', 'Route:') }}</strong> {{ shipment.origin_label }} {{ t('word.to', 'to') }} {{ shipment.destination_label }}</p>
+      <p><strong>{{ t('track.sender', 'Sender:') }}</strong> {{ shipment.sender_name }}</p>
+      <p><strong>{{ t('track.receiver', 'Receiver:') }}</strong> {{ shipment.receiver_name }}</p>
+      <p><strong>{{ t('track.weight', 'Weight:') }}</strong> {{ shipment.weight_kg }} kg</p>
+      <p><strong>{{ t('track.service', 'Service:') }}</strong> {{ shipment.service_level }}</p>
+      <p><strong>{{ t('track.description', 'Description:') }}</strong> {{ shipment.package_description }}</p>
+      <p><strong>{{ t('track.eta', 'ETA (UTC):') }}</strong> {{ shipment.eta_utc }}</p>
+    </div>
+
+    <div class="panel">
+      <p class="eyebrow">{{ t('track.map.eyebrow', 'Route Map') }}</p>
+      <h2>{{ t('track.map.title', 'From origin to destination') }}</h2>
+      <div id="route-map" class="map"></div>
+      <p class="hint">{{ t('track.map.hint', 'Origin and destination markers are loaded from shipment coordinates.') }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ t('track.timeline.eyebrow', 'Timeline') }}</p>
+      <h2>{{ t('track.timeline.title', 'All tracking events') }}</h2>
+    </div>
+    <div class="panel">
+      <ul class="timeline">
+        {% for event in events %}
+          <li>
+            <span class="dot on"></span>
+            <div>
+              <strong>{{ status_meta[event.status].label if event.status in status_meta else event.status }} - {{ event.note }}</strong><br/>
+              <small>{{ event.location_label }} - {{ event.event_time_utc }}</small>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const origin = [{{ shipment.origin_lat }}, {{ shipment.origin_lng }}];
+  const destination = [{{ shipment.destination_lat }}, {{ shipment.destination_lng }}];
+  const shipmentProgress = {{ progress }};
+
+  const map = L.map('route-map');
+  const bounds = L.latLngBounds([origin, destination]);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const originMarker = L.marker(origin).addTo(map).bindPopup('{{ t("map.origin", "Origin:") }} {{ shipment.origin_label|e }}');
+  const destinationMarker = L.marker(destination).addTo(map).bindPopup('{{ t("map.destination", "Destination:") }} {{ shipment.destination_label|e }}');
+
+  L.polyline([origin, destination], { color: '#4d148c', weight: 4, opacity: 0.9 }).addTo(map);
+
+  const planeIcon = L.divIcon({
+    className: 'plane-icon',
+    html: '&#9992;',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+  });
+
+  const t = Math.max(0, Math.min(1, shipmentProgress / 100));
+  const routePoint = [
+    origin[0] + (destination[0] - origin[0]) * t,
+    origin[1] + (destination[1] - origin[1]) * t
+  ];
+
+  L.marker(routePoint, { icon: planeIcon }).addTo(map).bindPopup('{{ t("map.plane_status", "Plane position based on shipment status") }}');
+  map.fitBounds(bounds.pad(0.35));
+</script>
+{% endblock %}
+
